@@ -1,0 +1,6 @@
+SERIAL_DRIVER = vendor
+POINTING_DEVICE_DRIVER = pmw3360
+SRC += analog.c
+
+NO_USB_STARTUP_CHECK = yes
+WAIT_FOR_USB = yes
