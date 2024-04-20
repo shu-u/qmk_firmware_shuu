@@ -3,6 +3,7 @@
 
 #pragma once
 #include "quantum.h"
+#include "Joystick.h"
 
 // ジョイスティックの定数
 #define STICK_OFFSET 220

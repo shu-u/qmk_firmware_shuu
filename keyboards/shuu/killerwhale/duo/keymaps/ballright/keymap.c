@@ -4,6 +4,8 @@
 #include QMK_KEYBOARD_H
 #include "add_keycodes.h"
 #include "add_joystick.h"
+#include "add_oled.h"
+#include "add_trackball.h"
 
 // レイヤー名
 enum layer_number {
@@ -121,8 +123,8 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
 // 初期化関係
 void matrix_init_user(void) {
     matrix_init_addedjoystick();
+    //joystick_axis_init();
 }
-
 
 // キースキャン関係
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
@@ -131,6 +133,23 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
 }
 
 void matrix_scan_user(void) {
+    //matrix_scan_addedjoystick();
+}
+
+bool should_process_keypress(void) { return true; }
+
+typedef struct _master_to_slave_t {
+    bool oled_mode;
+    uint8_t joystickMode;
+    ballconfig_t ballconfig;
+} master_to_slave_t;
+
+
+#if defined(JOYSTICK_ENABLE)
+
+void joystick_task(){
     matrix_scan_addedjoystick();
 }
+
+#endif
 

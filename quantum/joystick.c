@@ -62,7 +62,7 @@ static inline bool is_virtual_axis(uint8_t axis) {
     return joystick_axes[axis].input_pin == NO_PIN;
 }
 
-void joystick_flush(void) {
+__attribute__((weak)) void joystick_flush(void) {
     if (!joystick_state.dirty) return;
 
     // TODO: host.h?
@@ -149,6 +149,6 @@ void joystick_init(void) {
     joystick_init_axes();
 }
 
-void joystick_task(void) {
+__attribute__((weak)) void joystick_task(void) {
     joystick_read_axes();
 }
