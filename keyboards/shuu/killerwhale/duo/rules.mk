@@ -1,10 +1,5 @@
 SERIAL_DRIVER = vendor
 POINTING_DEVICE_DRIVER = pmw3360
-JOYSTICK_ENABLE = yes
-JOYSTICK_DRIVER = analog
-SRC += analog.c
-SRC += host.c
-SRC += joystick.c
 
 NO_USB_STARTUP_CHECK = yes
 WAIT_FOR_USB = yes

@@ -7,6 +7,8 @@
 #include "add_oled.h"
 #include "add_trackball.h"
 
+static uint8_t joystickMode = 0;
+
 // レイヤー名
 enum layer_number {
     BASE = 0,
@@ -123,7 +125,7 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
 // 初期化関係
 void matrix_init_user(void) {
     matrix_init_addedjoystick();
-    //joystick_axis_init();
+    joystick_init();
 }
 
 // キースキャン関係
@@ -138,6 +140,20 @@ void matrix_scan_user(void) {
 
 bool should_process_keypress(void) { return true; }
 
+layer_state_t layer_state_set_user(layer_state_t state) {
+    switch (get_highest_layer(state)) {
+        case ONOFF:
+        case OFFON:
+        case ONON:
+            joystickMode = 1;
+            break;
+        default:
+            joystickMode = 0;
+    }
+
+    return state;
+}
+
 typedef struct _master_to_slave_t {
     bool oled_mode;
     uint8_t joystickMode;
@@ -148,7 +164,7 @@ typedef struct _master_to_slave_t {
 #if defined(JOYSTICK_ENABLE)
 
 void joystick_task(){
-    matrix_scan_addedjoystick();
+    matrix_scan_addedjoystick(joystickMode);
 }
 
 #endif

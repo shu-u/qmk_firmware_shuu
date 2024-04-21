@@ -20,17 +20,10 @@ bool pressed_down = false;
 bool pressed_left = false;
 bool pressed_right = false;
 
-// Change this
-static int joystickThreshold = 6; // Value to prevent joystick drift
-static int joystickResolution = 24; // Decide the movement speed of the joystick
-
-// Don't chnage this
-static uint8_t joystickMode = 0;
-//static uint8_t joystick_modes = 3; // amount of modes
 
 joystick_config_t joystick_axes[JOYSTICK_AXIS_COUNT] = {
-    [0] = JOYSTICK_AXIS_VIRTUAL, // don't set these as JOYSTICK_AXIS_IN to be able to swich 
-    [1] = JOYSTICK_AXIS_VIRTUAL  // to keycode mode and etc..
+    [0] = JOYSTICK_AXIS_IN(GP27, 900, 575, 285), // don't set these as JOYSTICK_AXIS_IN to be able to swich 
+    [1] = JOYSTICK_AXIS_IN(GP28, 900, 575, 285),  // to keycode mode and etc..
 };
 
 void matrix_init_addedjoystick(void) {
@@ -51,7 +44,7 @@ void matrix_init_addedjoystick(void) {
     key_down.col = 6;
 }
 
-void matrix_scan_addedjoystick(void) {
+void matrix_scan_addedjoystick(uint8_t joystickMode) {
     if(joystick_attached){
         switch (joystickMode) {
             case 0: // keycodes
@@ -90,25 +83,25 @@ void matrix_scan_addedjoystick(void) {
                 }
                 break;
             case 1: // gamepad
-                joystick_state.axes[0] = 128 - analogReadPin(GP27)/4;
-                joystick_state.axes[1] = analogReadPin(GP28)/4 - 128;
-                joystick_state.dirty = true;
+                //joystick_state.axes[0] = 128 - analogReadPin(GP27)/4;
+                //joystick_state.axes[1] = analogReadPin(GP28)/4 - 128;
+                //joystick_state.dirty = true;
                 joystick_read_axes();
-                void host_joystick_send(joystick_t *joystick);
-                host_joystick_send(&joystick_state);
+                //void host_joystick_send(joystick_t *joystick);
+                //host_joystick_send(&joystick_state);
                 break;
             case 2: // mouse
-                report_mouse_t currentReport = pointing_device_get_report();
-                currentReport.x = (512 - analogReadPin(GP27)) / joystickResolution;
-                currentReport.y = (analogReadPin(GP28) - 512) / joystickResolution;
-                if (currentReport.x < joystickThreshold && currentReport.x > -joystickThreshold){
-                    currentReport.x = 0;
-                }
-                if (currentReport.y < joystickThreshold && currentReport.y > -joystickThreshold){
-                    currentReport.y = 0;
-                }
-                pointing_device_set_report(currentReport);
-                pointing_device_send();
+                //report_mouse_t currentReport = pointing_device_get_report();
+                //currentReport.x = (512 - analogReadPin(GP27)) / joystickResolution;
+                //currentReport.y = (analogReadPin(GP28) - 512) / joystickResolution;
+                //if (currentReport.x < joystickThreshold && currentReport.x > -joystickThreshold){
+                //    currentReport.x = 0;
+                //}
+                //if (currentReport.y < joystickThreshold && currentReport.y > -joystickThreshold){
+                //    currentReport.y = 0;
+                //}
+                //pointing_device_set_report(currentReport);
+                //pointing_device_send();
                 break;
         }
     }
