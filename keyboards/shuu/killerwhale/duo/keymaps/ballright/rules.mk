@@ -8,4 +8,5 @@ JOYSTICK_DRIVER = analog
 SRC += add_keycodes.c
 SRC += add_oled.c
 SRC += add_trackball.c
-SRC += add_joystick.cj
+SRC += add_joystick.c
+SRC += analog.c

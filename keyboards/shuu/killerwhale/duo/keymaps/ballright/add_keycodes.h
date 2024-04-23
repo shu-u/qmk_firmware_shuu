@@ -37,7 +37,20 @@ enum TH_keycodes{
     INV_SCRL,
     MOD_SCRL,
     AUTO_MOUSE,
-    OLED_MOD
+    OLED_MOD,
+    
+    GPD_A,
+    GPD_B,
+    GPD_X,
+    GPD_Y,
+    GPD_LT,
+    GPD_LB,
+    GPD_LCLK,
+    GPD_RT,
+    GPD_RB,
+    GPD_RCLK,
+    GPD_OPTION,
+    GPD_SHARE,
 };
 
 bool process_record_addedkeycodes(uint16_t keycode, keyrecord_t *record);

@@ -43,6 +43,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_UP, KC_DOWN, KC_LEFT, KC_RIGHT,         KC_ENT,     
         KC_MS_BTN1, KC_MS_BTN2  ,                    MO(OFFON)
     ),
+#if JOYSTICK_BUTTON_COUNT > 7
+    [OFFON] = LAYOUT(
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, GPD_LB,  GPD_LT,  GPD_RB,  GPD_RT,
+                 XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+                          XXXXXXX,
+        XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX,
+        XXXXXXX, XXXXXXX,                            XXXXXXX,
+
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        GPD_A,   GPD_B,   GPD_X,   GPD_Y,   XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+                                   XXXXXXX,
+        XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX,
+        XXXXXXX, XXXXXXX,                            XXXXXXX
+    ),
+#endif
     [MOUSE] = LAYOUT(
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,    _______,
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX,
@@ -146,6 +167,9 @@ layer_state_t layer_state_set_user(layer_state_t state) {
         case OFFON:
         case ONON:
             joystickMode = 1;
+            ballconfig.auto_mouse = false;
+            set_auto_mouse_enable(ballconfig.auto_mouse);
+            eeconfig_update_user(ballconfig.raw);
             break;
         default:
             joystickMode = 0;

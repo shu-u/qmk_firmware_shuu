@@ -24,6 +24,12 @@ bool pressed_right = false;
 joystick_config_t joystick_axes[JOYSTICK_AXIS_COUNT] = {
     [0] = JOYSTICK_AXIS_IN(GP27, 900, 575, 285), // don't set these as JOYSTICK_AXIS_IN to be able to swich 
     [1] = JOYSTICK_AXIS_IN(GP28, 900, 575, 285),  // to keycode mode and etc..
+#if JOYSTICK_AXIS_COUNT == 6
+    [2] = JOYSTICK_AXIS_VIRTUAL,
+    [3] = JOYSTICK_AXIS_VIRTUAL,
+    [4] = JOYSTICK_AXIS_VIRTUAL,
+    [5] = JOYSTICK_AXIS_VIRTUAL,
+#endif
 };
 
 void matrix_init_addedjoystick(void) {
@@ -89,19 +95,6 @@ void matrix_scan_addedjoystick(uint8_t joystickMode) {
                 joystick_read_axes();
                 //void host_joystick_send(joystick_t *joystick);
                 //host_joystick_send(&joystick_state);
-                break;
-            case 2: // mouse
-                //report_mouse_t currentReport = pointing_device_get_report();
-                //currentReport.x = (512 - analogReadPin(GP27)) / joystickResolution;
-                //currentReport.y = (analogReadPin(GP28) - 512) / joystickResolution;
-                //if (currentReport.x < joystickThreshold && currentReport.x > -joystickThreshold){
-                //    currentReport.x = 0;
-                //}
-                //if (currentReport.y < joystickThreshold && currentReport.y > -joystickThreshold){
-                //    currentReport.y = 0;
-                //}
-                //pointing_device_set_report(currentReport);
-                //pointing_device_send();
                 break;
         }
     }

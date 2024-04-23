@@ -386,6 +386,67 @@ bool process_record_addedkeycodes(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
             break;
+
+#if JOYSTICK_BUTTON_COUNT > 3
+        case GPD_A:
+			if (record->event.pressed) {
+				register_joystick_button(0);
+			} else {
+				unregister_joystick_button(0);
+			}
+			return false;
+		case GPD_B:
+			if (record->event.pressed) {
+				register_joystick_button(1);
+			} else {
+				unregister_joystick_button(1);
+			}
+			return false;
+		case GPD_X:
+			if (record->event.pressed) {
+				register_joystick_button(2);
+			} else {
+				unregister_joystick_button(2);
+			}
+			return false;
+		case GPD_Y:
+			if (record->event.pressed) {
+				register_joystick_button(3);
+			} else {
+				unregister_joystick_button(3);
+			}
+			return false;
+#endif
+#if JOYSTICK_BUTTON_COUNT > 7
+        case GPD_LB:
+			if (record->event.pressed) {
+				register_joystick_button(4);
+			} else {
+				unregister_joystick_button(4);
+			}
+			return false;
+		case GPD_RB:
+			if (record->event.pressed) {
+				register_joystick_button(5);
+			} else {
+				unregister_joystick_button(5);
+			}
+			return false;
+		case GPD_LT:
+			if (record->event.pressed) {
+				register_joystick_button(6);
+			} else {
+				unregister_joystick_button(6);
+			}
+			return false;
+		case GPD_RT:
+			if (record->event.pressed) {
+				register_joystick_button(7);
+			} else {
+				unregister_joystick_button(7);
+			}
+			return false;
+#endif
     }
     return true;
 }

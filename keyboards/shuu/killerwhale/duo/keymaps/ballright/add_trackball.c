@@ -22,7 +22,7 @@ void eeconfig_init_user(void) {
     ballconfig.inv = false;
     ballconfig.scmode = false;
     ballconfig.inv_sc = false;
-    ballconfig.auto_mouse = true;
+    ballconfig.auto_mouse = false;
     eeconfig_update_user(ballconfig.raw);
 }
 
