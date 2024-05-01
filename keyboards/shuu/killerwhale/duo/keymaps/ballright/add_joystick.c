@@ -22,8 +22,8 @@ bool pressed_right = false;
 
 
 joystick_config_t joystick_axes[JOYSTICK_AXIS_COUNT] = {
-    [0] = JOYSTICK_AXIS_IN(GP27, 900, 575, 285), // don't set these as JOYSTICK_AXIS_IN to be able to swich 
-    [1] = JOYSTICK_AXIS_IN(GP28, 900, 575, 285),  // to keycode mode and etc..
+    [0] = JOYSTICK_AXIS_IN(GP27, 900, 575, 300), // don't set these as JOYSTICK_AXIS_IN to be able to swich 
+    [1] = JOYSTICK_AXIS_IN(GP28, 900, 575, 300),  // to keycode mode and etc.. default: 900. 575. 285
 #if JOYSTICK_AXIS_COUNT == 6
     [2] = JOYSTICK_AXIS_VIRTUAL,
     [3] = JOYSTICK_AXIS_VIRTUAL,
