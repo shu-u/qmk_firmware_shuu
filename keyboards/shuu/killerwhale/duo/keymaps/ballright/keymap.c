@@ -23,25 +23,55 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         // 左手
         // 天面スイッチ
         KC_ESC,  KC_1,         KC_2,            KC_3, LT(BALL_SETTINGS, KC_4), LT(LIGHT_SETTINGS, KC_5),
-        KC_TAB,  KC_Q,         KC_W,            KC_E, KC_R, KC_T,
-        CMD_CTL, KC_A,         LT(MOUSE, KC_S), KC_D, KC_F, KC_G,
-                 LSFT_T(KC_Z), KC_X,            KC_C, KC_V, KC_B,
-                               MOD_SCRL,
+        KC_LEFT_SHIFT,  KC_Q,         KC_W,            KC_E, KC_R, KC_T,
+        CMD_CTL, KC_A,         KC_S, KC_D, KC_F, KC_G,
+                 KC_Z, KC_X,            KC_C, KC_V, KC_B,
+                               LT(KC_LEFT_ALT ,KC_TAB),
         // 側面スイッチ
-        KC_LNG2, KC_SPC,                
+        LALT(KC_LEFT_SHIFT), KC_LNG1,                
         // 十字キーorジョイスティック                // ジョイスティックスイッチ
         KC_UP, KC_DOWN, KC_LEFT, KC_RIGHT,         KC_ENT,      
         // 追加スイッチ                             // トグルスイッチ
-        KC_MS_BTN2, KC_MS_BTN1,                    MO(ONOFF),
+        LT(MO(MOUSE), KC_SPC), MO(LOWER),                    MO(ONOFF),
+
         // 右手
-        LT(LIGHT_SETTINGS, KC_6), LT(BALL_SETTINGS, KC_7), KC_8, KC_9, KC_0, KC_BSPC,
-        KC_Y, KC_U, KC_I,    KC_O,             KC_P,    KC_ENT,
-        KC_H, KC_J, KC_K,    LT(MOUSE, KC_L),  KC_SCLN, KC_RSFT,
-        KC_N, KC_M, KC_COMM, KC_DOT,           KC_SLSH,
-                             MOD_SCRL,
-        KC_SPACE, KC_LNG1,                   
-        KC_UP, KC_DOWN, KC_LEFT, KC_RIGHT,         KC_ENT,     
-        KC_MS_BTN1, KC_MS_BTN2  ,                    MO(OFFON)
+        LT(LIGHT_SETTINGS, KC_6), LT(BALL_SETTINGS, KC_7), KC_8, KC_9, KC_0, KC_MINS,
+        KC_Y, KC_U, KC_I,    KC_O,             KC_P,    KC_EQL,
+        KC_H, KC_J, KC_K,    KC_L,  KC_SCLN, KC_QUOT,
+        KC_N, KC_M, KC_COMM, KC_DOT,           KC_RBRC,
+                             KC_LBRC,
+        KC_BSPC, KC_ENT,                   
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,         XXXXXXX,     
+        AUTO_MOUSE, KC_DEL,                    MO(OFFON)
+    ),
+    [ONOFF] = LAYOUT( // GAME LAYER 1
+        // left
+        // Top
+        KC_ESC, KC_F1, KC_F2, KC_F3, KC_F4, KC_F5,
+        KC_LEFT_SHIFT, KC_1, KC_2, KC_3, KC_4, KC_5,
+        KC_LEFT_CTRL, KC_LEFT_SHIFT, KC_Q, KC_R, KC_E, KC_F,
+        KC_LEFT_CTRL, KC_Z, KC_X, KC_C, KC_V,
+        KC_G,
+        // Side (left is upper)
+        KC_TAB, KC_LEFT_ALT,
+        // Cross or Joystick
+        _______, _______, _______, _______, KC_MS_BTN3,
+        // Additional
+        KC_B, KC_H, XXXXXXX,
+
+        // Right
+        // Top
+        KC_F6, KC_F7, KC_F8, KC_F9, KC_F10, KC_F11,
+        KC_6, KC_7, KC_8, KC_9, KC_0, KC_F12,
+        KC_MS_BTN5, KC_MS_BTN1, KC_MS_BTN2, KC_MS_BTN3, KC_SPC, KC_ENT,
+        KC_MS_BTN4, KC_MS_BTN6, KC_MS_BTN7, KC_MS_BTN8, MOD_SCRL,
+        KC_ENT,
+        // Side (Right is upper)
+        KC_J, KC_M,
+        // Cross or Joystick
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        // Additional
+        KC_I, KC_K, MO(ONON)
     ),
 #if JOYSTICK_BUTTON_COUNT > 7
     [OFFON] = LAYOUT(
@@ -52,7 +82,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                           XXXXXXX,
         XXXXXXX, XXXXXXX,
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX,
-        XXXXXXX, XXXXXXX,                            XXXXXXX,
+        XXXXXXX, XXXXXXX,                            MO(ONON),
 
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
@@ -64,23 +94,62 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         XXXXXXX, XXXXXXX,                            XXXXXXX
     ),
 #endif
+    //[ONON] = LAYOUT(
+        //// left
+        //// Top
+        //KC_, KC_, KC_, KC_, KC_, KC_,
+        //KC_, KC_, KC_, KC_, KC_, KC_,
+        //KC_, KC_, KC_, KC_, KC_, KC_,
+        //KC_, KC_, KC_, KC_, KC_,
+        //KC_,
+        //// Side (left is upper)
+        //KC_, KC_,
+        //// Cross or Joystick
+        //_______, _______, _______, _______, KC_,
+        //// Additional
+        //KC_, KC_,
+//
+        //// Right
+        //// Top
+        //KC_, KC_, KC_, KC_, KC_, KC_,
+        //KC_, KC_, KC_, KC_, KC_, KC_,
+        //KC_, KC_, KC_, KC_, KC_, KC_,
+        //KC_, KC_, KC_, KC_, KC_,
+        //KC_,
+        //// Side (Right is upper)
+        //KC_, KC_,
+        //// Cross or Joystick
+        //XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        //// Additional
+        //KC_, KC_
+    //),
     [MOUSE] = LAYOUT(
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,    _______,
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX,
-        XXXXXXX, XXXXXXX, _______, KC_MS_BTN2, KC_MS_BTN1, MOD_SCRL,
-                 XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-                          _______,
-        XXXXXXX, XXXXXXX,
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX,
-        XXXXXXX, XXXXXXX,                            XXXXXXX,
-        _______, _______,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-        XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-        MOD_SCRL, KC_MS_BTN1, KC_MS_BTN2, _______, XXXXXXX, XXXXXXX,
+        // left
+        // Top
+        _______, _______, _______, _______, _______, _______,
+        _______, _______, _______, _______, _______, _______,
+        _______, _______, _______, _______, _______, _______,
+        _______, _______, _______, _______, _______,
+        _______,
+        // Side (left is upper)
+        _______, _______,
+        // Cross or Joystick
+        _______, _______, _______, _______, _______,
+        // Additional
+        _______, _______, XXXXXXX,
+        // Right
+        // Top
+        _______, _______, KC_UP, _______, _______, _______,
+        KC_HOME, KC_LEFT, KC_DOWN, KC_RIGHT, KC_END, _______,
+        KC_MS_BTN5, KC_MS_BTN1, KC_MS_BTN2, KC_MS_BTN3, MOD_SCRL, _______,
+        KC_MS_BTN4, KC_MS_BTN6, KC_MS_BTN7, KC_MS_BTN8, _______,
+        _______,
+        // Side (Right is upper)
+        _______, _______,
+        // Cross or Joystick
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-                                   _______,
-        XXXXXXX, XXXXXXX,
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX,
-        XXXXXXX, XXXXXXX,                            XXXXXXX
+        // Additional
+        _______, _______, XXXXXXX
     ),
     [BALL_SETTINGS] = LAYOUT(
         XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX, _______, L_CHMOD,
@@ -102,7 +171,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [LIGHT_SETTINGS] = LAYOUT(
         XXXXXXX, XXXXXXX, XXXXXXX, RGB_MOD, RGB_MOD, _______,
-        XXXXXXX, RGB_SPI, RGB_VAI, RGB_SAI, RGB_HUI, RGB_TOG,
+        OLED_MOD, RGB_SPI, RGB_VAI, RGB_SAI, RGB_HUI, RGB_TOG,
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
                  RGB_SPD, RGB_VAD, RGB_SAD, RGB_HUD, XXXXXXX,
                           XXXXXXX,
@@ -110,7 +179,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX,
         XXXXXXX, XXXXXXX,                            XXXXXXX,
         _______, RGB_MOD, RGB_MOD, XXXXXXX, XXXXXXX, XXXXXXX,
-        RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, RGB_SPI, XXXXXXX,
+        RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, RGB_SPI, OLED_MOD,
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
         XXXXXXX, RGB_HUD, RGB_SAD, RGB_VAD, RGB_SPD,
                                    XXXXXXX,
@@ -126,20 +195,120 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
         ENCODER_CCW_CW(REDO, UNDO),
         ENCODER_CCW_CW(KC_WH_U, KC_WH_D),
         ENCODER_CCW_CW(KC_WH_U, KC_WH_D),
+        ENCODER_CCW_CW(XXXXXXX, XXXXXXX),
         ENCODER_CCW_CW(KC_DEL, KC_BSPC),
         ENCODER_CCW_CW(KC_UP, KC_DOWN),
         ENCODER_CCW_CW(KC_WH_U, KC_WH_D),
-        ENCODER_CCW_CW(KC_WH_U, KC_WH_D)
+        ENCODER_CCW_CW(KC_WH_U, KC_WH_D),
+        ENCODER_CCW_CW(XXXXXXX, XXXXXXX)
+    },
+    [ONOFF] =   { 
+        ENCODER_CCW_CW(_______, _______), 
+        ENCODER_CCW_CW(_______, _______), 
+        ENCODER_CCW_CW(_______, _______), 
+        ENCODER_CCW_CW(_______, _______),
+        ENCODER_CCW_CW(_______, _______),
+        ENCODER_CCW_CW(_______, _______), 
+        ENCODER_CCW_CW(_______, _______), 
+        ENCODER_CCW_CW(_______, _______), 
+        ENCODER_CCW_CW(_______, _______),
+        ENCODER_CCW_CW(_______, _______)
+    },
+    [OFFON] =   { 
+        ENCODER_CCW_CW(_______, _______), 
+        ENCODER_CCW_CW(_______, _______), 
+        ENCODER_CCW_CW(_______, _______), 
+        ENCODER_CCW_CW(_______, _______),
+        ENCODER_CCW_CW(_______, _______),
+        ENCODER_CCW_CW(_______, _______), 
+        ENCODER_CCW_CW(_______, _______), 
+        ENCODER_CCW_CW(_______, _______), 
+        ENCODER_CCW_CW(_______, _______),
+        ENCODER_CCW_CW(_______, _______)
+    },
+    [ONON] =   { 
+        ENCODER_CCW_CW(_______, _______), 
+        ENCODER_CCW_CW(_______, _______), 
+        ENCODER_CCW_CW(_______, _______), 
+        ENCODER_CCW_CW(_______, _______),
+        ENCODER_CCW_CW(_______, _______),
+        ENCODER_CCW_CW(_______, _______), 
+        ENCODER_CCW_CW(_______, _______), 
+        ENCODER_CCW_CW(_______, _______), 
+        ENCODER_CCW_CW(_______, _______),
+        ENCODER_CCW_CW(_______, _______)
+    },
+    [LOWER] =   { 
+        ENCODER_CCW_CW(_______, _______), 
+        ENCODER_CCW_CW(_______, _______), 
+        ENCODER_CCW_CW(_______, _______), 
+        ENCODER_CCW_CW(_______, _______),
+        ENCODER_CCW_CW(_______, _______),
+        ENCODER_CCW_CW(_______, _______), 
+        ENCODER_CCW_CW(_______, _______), 
+        ENCODER_CCW_CW(_______, _______), 
+        ENCODER_CCW_CW(_______, _______),
+        ENCODER_CCW_CW(_______, _______)
+    },
+    [UPPER] =   { 
+        ENCODER_CCW_CW(_______, _______), 
+        ENCODER_CCW_CW(_______, _______), 
+        ENCODER_CCW_CW(_______, _______), 
+        ENCODER_CCW_CW(_______, _______),
+        ENCODER_CCW_CW(_______, _______),
+        ENCODER_CCW_CW(_______, _______), 
+        ENCODER_CCW_CW(_______, _______), 
+        ENCODER_CCW_CW(_______, _______), 
+        ENCODER_CCW_CW(_______, _______),
+        ENCODER_CCW_CW(_______, _______)
+    },
+    [UTIL] =   { 
+        ENCODER_CCW_CW(_______, _______), 
+        ENCODER_CCW_CW(_______, _______), 
+        ENCODER_CCW_CW(_______, _______), 
+        ENCODER_CCW_CW(_______, _______),
+        ENCODER_CCW_CW(_______, _______),
+        ENCODER_CCW_CW(_______, _______), 
+        ENCODER_CCW_CW(_______, _______), 
+        ENCODER_CCW_CW(_______, _______), 
+        ENCODER_CCW_CW(_______, _______),
+        ENCODER_CCW_CW(_______, _______)
+    },
+    [MOUSE] =   { 
+        ENCODER_CCW_CW(_______, _______), 
+        ENCODER_CCW_CW(_______, _______), 
+        ENCODER_CCW_CW(_______, _______), 
+        ENCODER_CCW_CW(_______, _______),
+        ENCODER_CCW_CW(_______, _______),
+        ENCODER_CCW_CW(_______, _______), 
+        ENCODER_CCW_CW(_______, _______), 
+        ENCODER_CCW_CW(_______, _______), 
+        ENCODER_CCW_CW(_______, _______),
+        ENCODER_CCW_CW(_______, _______)
+    },
+    [BALL_SETTINGS] =   { 
+        ENCODER_CCW_CW(_______, _______), 
+        ENCODER_CCW_CW(_______, _______), 
+        ENCODER_CCW_CW(_______, _______), 
+        ENCODER_CCW_CW(_______, _______),
+        ENCODER_CCW_CW(_______, _______),
+        ENCODER_CCW_CW(_______, _______), 
+        ENCODER_CCW_CW(_______, _______), 
+        ENCODER_CCW_CW(_______, _______), 
+        ENCODER_CCW_CW(_______, _______),
+        ENCODER_CCW_CW(_______, _______)
     },
     [LIGHT_SETTINGS] =   { 
         ENCODER_CCW_CW(RGB_SPI, RGB_SPD), 
         ENCODER_CCW_CW(RGB_VAI, RGB_VAD), 
         ENCODER_CCW_CW(RGB_SAI, RGB_SAD), 
         ENCODER_CCW_CW(RGB_HUI, RGB_HUD),
+        ENCODER_CCW_CW(XXXXXXX, XXXXXXX),
         ENCODER_CCW_CW(RGB_SPI, RGB_SPD), 
         ENCODER_CCW_CW(RGB_VAI, RGB_VAD), 
         ENCODER_CCW_CW(RGB_SAI, RGB_SAD), 
-        ENCODER_CCW_CW(RGB_HUI, RGB_HUD)
+        ENCODER_CCW_CW(RGB_HUI, RGB_HUD),
+        ENCODER_CCW_CW(XXXXXXX, XXXXXXX)
     },
 };
 
